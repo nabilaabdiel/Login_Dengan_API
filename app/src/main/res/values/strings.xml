@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CoreAndroid</string>
+    <string name="label_must_fill">Wajib diisi</string>
+</resources>
