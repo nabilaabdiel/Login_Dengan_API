@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="20dp"
         tools:context=".ui.login.LoginActivity">
 
         <TextView
@@ -27,6 +27,7 @@
 
         <EditText
             android:id="@+id/et_password"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -36,8 +37,26 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/teal_700"
-            android:text="Login" />
+            android:backgroundTint="@color/dark_tosca"
+            android:text="Login"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Don't have an account, Sign in now!"/>
+
+        <Button
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/dark_tosca"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </layout>

@@ -1,5 +1,6 @@
-package com.example.coreandroid.ui.login
+package com.example.coreandroid.ui.register
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -10,46 +11,43 @@ import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.textOf
 import com.example.coreandroid.R
 import com.example.coreandroid.base.activity.BaseActivity
-import com.example.coreandroid.databinding.ActivityLoginBinding
+import com.example.coreandroid.databinding.ActivityRegisterBinding
 import com.example.coreandroid.ui.home.HomeActivity
-import com.example.coreandroid.ui.register.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(R.layout.activity_login) {
+class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel>(R.layout.activity_register) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.btnLogin.setOnClickListener {
-            if(binding.etPhone.isEmptyRequired(R.string.label_must_fill) ||
-                binding.etPassword.isEmptyRequired(R.string.label_must_fill)) {
+        binding.btnRegister.setOnClickListener {
+            if (binding.etName.isEmptyRequired(R.string.label_must_fill) || binding.etPhone.isEmptyRequired(
+                    R.string.label_must_fill
+                ) || binding.etPassword.isEmptyRequired(R.string.label_must_fill)
+            ) {
                 return@setOnClickListener
             }
+
+            val name = binding.etName.textOf()
             val phone = binding.etPhone.textOf()
             val password = binding.etPassword.textOf()
 
-            viewModel.login(phone, password)
-        }
-
-        binding.btnSignIn.setOnClickListener {
-            openActivity<RegisterActivity>() {
-                finish()
-            }
+            viewModel.register(name, phone, password)
         }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.apiResponse.collect{
+                    viewModel.apiResponse.collect {
                         when (it.status) {
                             ApiStatus.LOADING -> loadingDialog.show("Logging in...")
                             ApiStatus.SUCCESS -> {
                                 loadingDialog.dismiss()
-                                openActivity<HomeActivity> ()
+                                openActivity<HomeActivity>()
                                 finish()
                             }
-                            else -> loadingDialog.setResponse(it.message ?:return@collect)
+                            else -> loadingDialog.setResponse(it.message ?: return@collect)
                         }
                     }
                 }

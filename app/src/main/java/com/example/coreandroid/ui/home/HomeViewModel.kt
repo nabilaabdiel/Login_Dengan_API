@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val userDao: UserDao): BaseViewModel() {
-    fun logout(logout: () ->Unit) = viewModelScope.launch {
+    fun logout(logout: () -> Unit) = viewModelScope.launch {
         userDao.deleteAll()
         logout()
     }

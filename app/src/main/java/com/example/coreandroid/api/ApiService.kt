@@ -2,6 +2,7 @@ package com.example.coreandroid.api
 
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
@@ -13,4 +14,11 @@ interface ApiService {
         @Field("password") password: String?
     ): String
 
+    @FormUrlEncoded
+    @POST("mfriend_register")
+    suspend fun register(
+        @Field("phone") phone: String?,
+        @Field("password") password: String?,
+        @Field("name") name: String?
+    ): String
 }

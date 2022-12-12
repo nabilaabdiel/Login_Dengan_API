@@ -27,8 +27,7 @@ class LoginViewModel @Inject constructor(private val apiService: ApiService, pri
                     val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
                     userDao.insert(data.copy(idRoom = 1))
                     _apiResponse.send(ApiResponse().responseSuccess())
-                }
-                else {
+                } else {
                     val message = response.getString(ApiCode.MESSAGE)
                     _apiResponse.send(ApiResponse(status = ApiStatus.ERROR, message = message ))
                 }

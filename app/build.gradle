@@ -8,7 +8,8 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.example.coreandroid'
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.coreandroid"
@@ -22,8 +23,13 @@ android {
 
     buildTypes {
         release {
+            manifestPlaceholders = [usesCleartextTraffic: false, crashlyticsEnableed: true, performanceEnabled: true]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            manifestPlaceholders = [usesCleartextTraffic: true, crashlyticsEnableed: false, performanceEnabled: false]
         }
     }
     compileOptions {
@@ -40,18 +46,21 @@ android {
 }
 
 dependencies {
-    //crocodic core
+    //Crocodic Core
     implementation 'com.github.crocodic-studio:AndroidCoreProject:4.0.6'
 
+    //Hilt
     implementation 'com.google.dagger:hilt-android:2.44'
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     kapt 'com.google.dagger:hilt-compiler:2.44'
 
+    //Room
     implementation 'androidx.room:room-ktx:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
 
+    //Firebase
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'

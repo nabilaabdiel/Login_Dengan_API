@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">CoreAndroid</string>
+    <string name="app_name">Login API</string>
     <string name="label_must_fill">Wajib diisi</string>
 </resources>
