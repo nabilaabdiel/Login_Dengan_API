@@ -5,8 +5,8 @@ plugins {
     id 'com.google.gms.google-services'
     id 'com.google.firebase.crashlytics'
     id 'com.google.dagger.hilt.android'
-}
 
+}
 android {
     namespace 'com.example.coreandroid'
     compileSdk 33
@@ -23,13 +23,8 @@ android {
 
     buildTypes {
         release {
-            manifestPlaceholders = [usesCleartextTraffic: false, crashlyticsEnableed: true, performanceEnabled: true]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            debuggable true
-            manifestPlaceholders = [usesCleartextTraffic: true, crashlyticsEnableed: false, performanceEnabled: false]
         }
     }
     compileOptions {
@@ -46,10 +41,8 @@ android {
 }
 
 dependencies {
-    //Crocodic Core
-    implementation 'com.github.crocodic-studio:AndroidCoreProject:4.0.6'
 
-    //Hilt
+    //Hitl
     implementation 'com.google.dagger:hilt-android:2.44'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
@@ -60,12 +53,19 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
 
+    //Core Crocodic
+    implementation 'com.github.crocodic-studio:AndroidCoreProject:4.0.7'
+
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-crashlytics'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //Biometric
+    implementation 'androidx.biometric:biometric:1.1.0'
+
 }

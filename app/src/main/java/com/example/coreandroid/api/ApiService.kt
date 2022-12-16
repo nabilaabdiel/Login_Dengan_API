@@ -1,9 +1,6 @@
 package com.example.coreandroid.api
 
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -20,5 +17,10 @@ interface ApiService {
         @Field("phone") phone: String?,
         @Field("password") password: String?,
         @Field("name") name: String?
+    ): String
+
+    @GET("webs/list-article")
+    suspend fun listArticle (
+        @Query("page") page: Int?
     ): String
 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="enableBiometric"
+            type="Boolean" />
+
+        <variable
+            name="hasBiometric"
+            type="Boolean" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="25dp"
+        tools:context=".ui.home.HomeActivity">
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/btn_biometric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked='@{enableBiometric}'
+            android:text="Biometric Auth"
+            android:textSize="14sp"
+            android:visibility='@{hasBiometric ? View.VISIBLE : View.GONE}' />
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/dark_tosca"
+            android:onClick="onClick"
+            android:text="Logout" />
+
+    </LinearLayout>
+</layout>

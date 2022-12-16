@@ -2,6 +2,7 @@ package com.example.coreandroid.injection
 
 import android.content.Context
 import androidx.databinding.ktx.BuildConfig
+import com.crocodic.core.data.CoreSession
 import com.crocodic.core.helper.okhttp.SSLTrust
 import com.example.coreandroid.api.ApiService
 import com.example.coreandroid.data.room.AppDatabase
@@ -22,6 +23,10 @@ import javax.net.ssl.SSLContext
 @InstallIn(SingletonComponent::class)
 @Module
 class DataModule {
+
+    @Provides
+    fun provideSession(@ApplicationContext context: Context) = CoreSession(context)
+
     @Provides
     fun provideAppDatabase(@ApplicationContext context: Context) = AppDatabase.getDatabase(context)
 
@@ -56,7 +61,7 @@ class DataModule {
     @Provides
     fun provideApiService(okHttpClient: OkHttpClient): ApiService {
         return Retrofit.Builder()
-            .baseUrl("http://rnd.crocodic.net/teddy/public/api/")
+            .baseUrl("http://api.app.reprime.id/v3/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(okHttpClient)
             .build().create(ApiService::class.java)
