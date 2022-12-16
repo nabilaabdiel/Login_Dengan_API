@@ -61,7 +61,8 @@ class DataModule {
     @Provides
     fun provideApiService(okHttpClient: OkHttpClient): ApiService {
         return Retrofit.Builder()
-            .baseUrl("http://api.app.reprime.id/v3/")
+            .baseUrl("http://rnd.crocodic.net/teddy/public/api/")
+//            .baseUrl("http://api.app.reprime.id/v3/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(okHttpClient)
             .build().create(ApiService::class.java)
