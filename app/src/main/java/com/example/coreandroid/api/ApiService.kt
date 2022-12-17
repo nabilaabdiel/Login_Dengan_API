@@ -19,6 +19,12 @@ interface ApiService {
         @Field("name") name: String?
     ): String
 
+    @GET("mfriend_list")
+    suspend fun getFriends (
+        @Query("id_user") id_user: Int?,
+        @Query("search") search: String?
+    ): String
+
 //    @GET("webs/list-article")
 //    suspend fun listArticle (
 //        @Query("page") page: Int?

@@ -15,4 +15,7 @@ interface UserDao: CoreDao <User> {
 
     @Query("SELECT EXISTS (SELECT 1 FROM User WHERE idRoom = 1)")
     suspend fun isLogin(): Boolean
+
+    @Query("SELECT * FROM User WHERE idRoom = 1")
+    suspend fun userLogin(): User
 }

@@ -27,10 +27,10 @@
             android:id="@+id/btn_biometric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:checked='@{enableBiometric}'
             android:text="Biometric Auth"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:visibility='@{hasBiometric ? View.VISIBLE : View.GONE}' />
 
         <Button

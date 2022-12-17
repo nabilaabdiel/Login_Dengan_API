@@ -16,13 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoreAndroid"
         android:usesCleartextTraffic="true">
-<!--        <activity-->
-<!--            android:name=".ui.article.ArticleActivity"-->
-<!--            android:exported="false">-->
-<!--            <meta-data-->
-<!--                android:name="android.app.lib_name"-->
-<!--                android:value="" />-->
-<!--        </activity>-->
+
+        <!-- <activity -->
+        <!-- android:name=".ui.article.ArticleActivity" -->
+        <!-- android:exported="false"> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.lib_name" -->
+        <!-- android:value="" /> -->
+        <!-- </activity> -->
         <activity
             android:name=".ui.setting.SettingActivity"
             android:exported="false">

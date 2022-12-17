@@ -13,36 +13,65 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center"
+        android:padding="16dp"
         tools:context=".ui.home.HomeActivity">
 
-        <TextView
-            android:textColor="@color/black"
-            android:textSize="16sp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text='@{"Halo, selamat datang " + user.name}'
+                tools:text="Halo, selamat datang Hisame" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{"Halo, selamat datang " + user.name}'
-            tools:text="Halo, selamat datang Hisame" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="16dp"
-            android:text="Logout"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/dark_tosca"/>
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:text="Setting"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:backgroundTint="@color/dark_tosca"/>
 
-        <Button
-            android:id="@+id/btn_setting"
-            android:layout_width="200dp"
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="75dp"
+                android:backgroundTint="@color/dark_tosca"
+                android:text="Logout" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:onClick="onClick"
-            android:text="Setting"
-            android:backgroundTint="@color/dark_tosca"/>
+            android:layout_marginTop="12dp"
+            android:hint="Cari..."
+            android:imeOptions="actionSearch"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_friend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_friend" />
 
     </LinearLayout>
-
 </layout>

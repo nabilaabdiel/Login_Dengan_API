@@ -1,14 +1,25 @@
 package com.example.coreandroid.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.crocodic.core.base.adapter.ReactiveListAdapter
+import com.crocodic.core.extension.hideSoftKeyboard
 import com.crocodic.core.extension.openActivity
 import com.example.coreandroid.R
 import com.example.coreandroid.base.activity.BaseActivity
+import com.example.coreandroid.data.room.user.User
 import com.example.coreandroid.data.room.user.UserDao
 import com.example.coreandroid.databinding.ActivityHomeBinding
+import com.example.coreandroid.databinding.ItemFriendBinding
 import com.example.coreandroid.ui.login.LoginActivity
 import com.example.coreandroid.ui.setting.SettingActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -17,24 +28,63 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(R.layout.a
     @Inject
     lateinit var userDao: UserDao
 
+    private val runnable by lazy {
+        Runnable {
+            refreshData()
+        }
+    }
+    private val handler = Handler(Looper.getMainLooper())
+
+    private val adapter by lazy {
+        ReactiveListAdapter<ItemFriendBinding, User>(R.layout.item_friend)
+    }
+
+    private var keyword: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        userDao.getUser().observe(this){
+        binding.rvFriend.adapter = adapter
+
+        userDao.getUser().observe(this) {
             binding.user = it
         }
 
+        binding.btnSetting.setOnClickListener {
+            openActivity<SettingActivity>()
+        }
         binding.btnLogout.setOnClickListener {
-            viewModel.logout {
-                openActivity<LoginActivity>()
-                finish()
-            }
+            openActivity<LoginActivity>()
+            finish()
         }
 
-        binding.btnSetting.setOnClickListener {
-            openActivity<SettingActivity>() {
-                finish()
+        binding.etSearch.doAfterTextChanged {
+            keyword = if (it.toString().trim().isEmpty()) {
+                null
+            } else {
+                it.toString()
+            }
+
+            handler.removeCallbacks(runnable)
+            handler.postDelayed(runnable, 1500)
+        }
+
+        binding.etSearch.setOnEditorActionListener { textView, i, keyEvent ->
+            textView.hideSoftKeyboard()
+            true
+        }
+
+        refreshData()
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.friends.collect {
+                    adapter.submitList(it)
+                }
             }
         }
+    }
+    private fun refreshData() {
+        viewModel.getFriends(keyword)
     }
 }
