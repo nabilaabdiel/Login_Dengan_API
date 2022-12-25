@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Login API</string>
     <string name="label_must_fill">Wajib diisi</string>
+    <string name="Urutkan_Dari_Likes_Terbanyak"> Urutan dari likes terbanyak</string>
+
+    <string-array name="school">
+        <item> SMK Negeri 11 Semarang </item>
+        <item> SMK Negeri 3 Kendal </item>
+        <item> SMK Wikrama Jepara </item>
+    </string-array>
+
+    <string-array name="filter_school">
+        <item> Semua </item>
+        <item> SMK Negeri 11 Semarang </item>
+        <item> SMK Negeri 3 Kendal </item>
+        <item> SMK Wikrama Jepara </item>
+    </string-array>
 </resources>

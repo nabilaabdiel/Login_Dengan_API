@@ -26,9 +26,11 @@ class LoginViewModel @Inject constructor(private val apiService: ApiService, pri
             override suspend fun onSuccess(response: JSONObject) {
                 val status = response.getInt(ApiCode.STATUS)
                 if (status == ApiCode.SUCCESS){
+
+                    session.setValue(Const.PHONE, phone)
+                    session.setValue(Const.PASSWORD, password)
+
                     val data = response.getJSONObject(ApiCode.DATA).toObject<User>(gson)
-                    phone?.let {session.setValue(Const.PHONE, it)}
-                    password?.let {session.setValue(Const.PASSWORD, it)}
                     userDao.insert(data.copy(idRoom = 1))
                     _apiResponse.send(ApiResponse().responseSuccess())
                 } else {

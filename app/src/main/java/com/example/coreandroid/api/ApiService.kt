@@ -22,7 +22,8 @@ interface ApiService {
     @GET("mfriend_list")
     suspend fun getFriends (
         @Query("id_user") id_user: Int?,
-        @Query("search") search: String?
+        @Query("search") search: String?,
+        @Query("filter") filter: String?
     ): String
 
 //    @GET("webs/list-article")

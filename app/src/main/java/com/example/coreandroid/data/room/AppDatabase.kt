@@ -8,7 +8,7 @@ import com.example.coreandroid.data.room.user.User
 import com.example.coreandroid.data.room.user.UserDao
 
 //Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class], version = 2, exportSchema = false)
 public abstract class AppDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
