@@ -19,6 +19,14 @@ interface ApiService {
         @Field("name") name: String?
     ): String
 
+    @FormUrlEncoded
+    @POST("mfriend_update")
+    suspend fun update(
+        @Field("name") name: String?,
+        @Field("school") school: String?,
+        @Field("description") description: String?
+    ): String
+
     @GET("mfriend_list")
     suspend fun getFriends (
         @Query("id_user") id_user: Int?,
