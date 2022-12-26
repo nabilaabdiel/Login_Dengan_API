@@ -34,8 +34,8 @@ interface ApiService {
         @Query("filter") filter: String?
     ): String
 
-//    @GET("webs/list-article")
-//    suspend fun listArticle (
-//        @Query("page") page: Int?
-//    ): String
+    @GET("webs/list-article")
+    suspend fun listArticle (
+        @Query("page") page: Int?
+    ): String
 }

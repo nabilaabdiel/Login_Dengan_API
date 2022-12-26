@@ -7,9 +7,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+
 //import kotlinx.parcelize.Parcelize
 
-//@Parcelize
+@Parcelize
 data class Article (
     @Expose
     @SerializedName("created_at")
@@ -26,7 +28,7 @@ data class Article (
     @Expose
     @SerializedName("image")
     val image: String?
-) {
+): Parcelable {
     companion object {
         @JvmStatic
         @BindingAdapter("image")

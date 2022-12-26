@@ -9,11 +9,13 @@ package com.example.coreandroid.data.constant
 //        const val PHONE = "phone"
 //        const val PASSWORD = "password"
 //    }
-//}
 
 object Const {
     const val BIOMETRIC ="biometric"
     const val PHONE ="phone"
     const val PASSWORD ="password"
+    object BUNDLE {
+        const val ARTICLE = "article"
+    }
 
 }
